@@ -1,0 +1,19 @@
+{{loading ? "Loading announcements..." : null}}
+
+
+<ul class="announcement-list list-unstyled">
+    <li *ngIf="announcements && announcements.length === 0">
+        You don't have any announcements.
+    </li>
+
+    <announcement-item
+            *ngFor="let announcement of announcements"
+            (deletedItemEmiter)="deleteItem($event)"
+            id="{{announcement.idAnnouncement}}"
+            [view]="'strip'"
+            [announcement]="announcement">
+        {{announcement.id}}
+
+    </announcement-item>
+</ul>
+

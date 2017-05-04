@@ -1,0 +1,74 @@
+<div class="search-tab-wrap">
+    <md-tab-group>
+        <md-tab class="mat-tab-label-wrap" label="Search">
+            <form class="form filter-body" (submit)="formHandler(searchForm)" [formGroup]="searchForm">
+                <div class="row">
+                    <div class="col-2 form-list-item">
+                        <md-input-container class="d-block">
+                            <input type="text" mdInput placeholder="Country" formControlName="country">
+                        </md-input-container>
+                    </div>
+
+                    <div class="form-list-item col-2">
+                        <md-input-container class="d-block">
+                            <input type="text" mdInput placeholder="City" formControlName="city">
+                        </md-input-container>
+                    </div>
+
+                    <div class="form-list-item col-2">
+                        <md2-datepicker class="d-block"
+                                        type="date"
+                                        placeholder="Check In"
+                                        min="{{minDate}}"
+                                        formControlName="checkIn"
+                                        format="DD/MM/YYYY">
+                        </md2-datepicker>
+                    </div>
+
+                    <div class="form-list-item col-2">
+                        <md2-datepicker class="d-block"
+                                        type="date"
+                                        placeholder="Check Out"
+                                        min="{{minDate}}"
+                                        formControlName="checkOut"
+                                        format="DD/MM/YYYY">
+                        </md2-datepicker>
+                    </div>
+
+                    <div class="form-list-item col-2">
+                        <md-slider [max]="10000"
+                                   [min]="50"
+                                   [step]="25"
+                                   formControlName="fromPrice"
+                                   [thumb-label]="true">
+                        </md-slider>
+                    </div>
+
+                    <div class="form-list-item col-2">
+
+                        <md-select placeholder="Rooms" class="d-block" formControlName="rooms">
+                            <md-option [value]="">No matter</md-option>
+                            <md-option [value]="1">1</md-option>
+                            <md-option [value]="2">2</md-option>
+                            <md-option [value]="3">3</md-option>
+                            <md-option [value]="4">4</md-option>
+                            <md-option [value]="5">5+</md-option>
+                        </md-select>
+                    </div>
+
+                    <div class="col-2">
+                        <button class="btn btn-success text-uppercase" type="submit">
+                            <i class="icon icon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </md-tab>
+
+        <md-tab label="Advanced filters">
+            <div class="filter-body">
+                some filters
+            </div>
+        </md-tab>
+    </md-tab-group>
+</div>

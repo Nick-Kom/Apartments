@@ -1,0 +1,56 @@
+<div class="row contact-item" *ngIf="!edit; else form">
+    <div class="col-8">
+        <a *ngIf="email" class="link" href="mailto:{{email}}">{{email.email}}</a>
+    </div>
+
+    <div class="col-4 d-flex align-items-center">
+        <div class="btn-toolbar">
+            <button md-button class="btn btn-sm btn-secondary float-left" (click)="deleteEmail(email)" type="button">
+                <i class="icon icon-dustbin"></i>
+            </button>
+
+            <button md-button class="btn btn-sm btn-success float-right" (click)="changeView()" type="button">
+                <i class="icon icon-edit"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #form>
+    <form [formGroup]="emailForm" (ngSubmit)="changeEmail(emailForm)">
+        <div class="row contact-item">
+            <div class="col-8">
+                <md-input-container class="d-block">
+                    <input mdInput type="text"
+                           class="form-control form-input"
+                           placeholder="Email"
+                           formControlName="email"
+                    ></md-input-container>
+
+                <div class="text-danger"
+                     *ngIf="emailForm.get('email').errors && emailForm.get('email').touched"
+                >
+                    <span *ngIf="emailForm.get('email').hasError('pattern')" class="d-block text-sm">
+                        Your email is invalid
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="btn-toolbar">
+                    <button md-button class="btn btn-sm btn-secondary" (click)="changeView()"
+                            type="button">
+                        &times;
+                    </button>
+
+                    <button md-button
+                            class="btn btn-success"
+                            [disabled]="emailForm.get('email').value.trim().length === 0 || emailForm.invalid"
+                            type="submit">
+                        <i class="icon icon-save"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-template>

@@ -1,0 +1,99 @@
+<div class="user-card">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="portal-section-header">Profile info</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <div class="user-thumb-block">
+                <div class="user-thumb text-center" (click)="openDialog()">
+                    <img class="img-fluid" src={{avatar}} alt="">
+
+                    <div class="thumb-controls">
+                        <span class="control">Change photo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div class="user-info">
+                <div class="row">
+                    <div class="col-12 col-sm-6 text-left">
+                        <button class="change-password"
+                                md-button
+                                (click)="changePasswordDialog()"
+                        >
+                            Change password
+                        </button>
+                    </div>
+
+                    <div class="col-12 col-sm-6 text-right">
+                        <button class="btn btn-secondary btn-sm" md-button (click)="changeView()">
+                            {{!infoEdit ? 'Edit info' : 'Close'}}
+                        </button>
+                    </div>
+                </div>
+
+                <div *ngIf="!infoEdit; else form">
+                    <ul *ngIf="user" class="user-info-list">
+                        <li class="user-info-list-item">
+                            <strong>Your email:</strong> {{user.email}}
+                        </li>
+                        <li class="user-info-list-item">
+                            <strong>First name:</strong> {{user.firstName || 'No info'}}
+                        </li>
+                        <li class="user-info-list-item">
+                            <strong>Last name:</strong> {{user.lastName || 'No info'}}
+                        </li>
+                    </ul>
+                </div>
+
+
+                <ng-template #form>
+                    <form class="form well"
+                          (ngSubmit)="onSubmit(userInfo)"
+                          [formGroup]="userInfo"
+                    >
+
+                        <ul class="list-unstyled form-list">
+                            <li class="form-list-item">
+                                <md-input-container class="d-block">
+                                    <input mdInput
+                                           formControlName="firstName"
+                                           name="firstName"
+                                           placeholder="First name"
+                                    >
+                                </md-input-container>
+                            </li>
+
+                            <li class="form-list-item">
+                                <md-input-container class="d-block">
+                                    <input mdInput
+                                           formControlName="lastName"
+                                           name="lastName"
+                                           placeholder="Last name"
+                                    >
+                                </md-input-container>
+                            </li>
+                        </ul>
+
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button type="submit"
+                                        md-button
+                                        class="btn btn-primary"
+                                >
+                                    Save changes
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+</div>

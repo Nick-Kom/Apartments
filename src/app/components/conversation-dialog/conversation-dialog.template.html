@@ -1,0 +1,71 @@
+<div class="conversation-dialog">
+    <header class="conversation-dialog-header row">
+        <div class="col-2 col-md-1">
+            <a routerLink="/portal/messages">Back</a>
+        </div>
+
+        <div class="col-10 col-md-11">
+            <h1 class="h4 text-right">
+                Conversation with iLavs
+            </h1>
+        </div>
+    </header>
+
+    <div class="conversation-dialog-body">
+        <ul class="msg-list">
+            <li class="msg" *ngFor="let message of dialog">
+                <div class="user-thumb">
+                    <img class="img-fluid" src="{{url}}{{message.imageUrl}}" alt="">
+                </div>
+                    <div class="msg-author  ">
+                        <p
+                                *ngIf="!message.lastName  && !message.firstName"
+                                class="msg-author ">{{message.email}}
+                        </p>
+                        <p *ngIf="message.lastName || message.firstName"
+                           class="msg-author">{{message.firstName}} {{message.lastName }}
+                        </p>
+
+                        <p class="msg-text">
+                            {{message.text}}
+                        </p>
+                    </div>
+
+                    <div class="date ">
+                        {{message.createdDate | date:'medium' }}
+                    </div>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <form [formGroup]="messageForm" (ngSubmit)="addMessage(messageForm)"
+
+          name="messageForm">
+        <div class="row  message-block">
+            <div class="col-md-12 col-lg-10 message-field">
+                <md-input-container class="d-block">
+                    <textarea
+                            rows="4"
+                            mdInput
+                            placeholder="Message"
+                            formControlName="message"
+                    >
+                    </textarea>
+                </md-input-container>
+            </div>
+            <div class="col-lg-2 col-md-10 ">
+                <div class="btn-toolbar btn-send">
+                    <button md-button
+                            [disabled]="!messageForm.get('message').value"
+                            class="btn btn-sm btn-secondary float-right"
+                            type="submit">
+                        <i class="icon icon-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

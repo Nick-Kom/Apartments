@@ -1,0 +1,11 @@
+<div class="wrap">
+    <button *ngIf="!loader" type="button" class="btn  btn-success">
+        Choose file
+    </button>
+    <input *ngIf="!loader" type="file" multiple/>
+    <img *ngIf="loader" class="loader" src="../../assets/img/loader.gif" alt="Loading..."/>
+    <p *ngIf="messageAvatar" class="message">
+        This picture doesn't fit,too small or too big
+    </p>
+    <p *ngIf="messageAvatarOk" class="message">Your image was add</p>
+</div>

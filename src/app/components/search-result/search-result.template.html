@@ -1,0 +1,33 @@
+<div class="search-result"
+     appInfiniteScroller
+     scrollPerecnt="70"
+     immediateCallback="true"
+     [scrollCallback]="scrollCallback"
+>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-primary text-center">{{searchLabel ? 'Search results' : 'Latest'}}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <ul
+                class="announcement-list list-unstyled row"
+
+            >
+                <announcement-item
+                        *ngFor="let item of announcements"
+                        [announcement]="item"
+                        class="col-sm-6 col-md-6 col-lg-4"
+                        [id]="item.idAnnouncement"
+                        [view]="'card'">
+                </announcement-item>
+            </ul>
+
+            <div class="text-center">
+                <button *ngIf="!hideButton" md-button (click)="loadMore()">Load more</button>
+            </div>
+        </div>
+    </div>
+</div>

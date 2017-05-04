@@ -1,0 +1,50 @@
+<div class="sidebar">
+    <div class="profile-avatar">
+        <div class="profile-avatar-img rounded-circle">
+            <img class="img-fluid" src={{avatar}} alt="">
+        </div>
+    </div>
+
+    <div class=" text-center">
+        {{showUserName()}}
+    </div>
+
+    <div class="logout text-center">
+        <a (click)="doLogout()">Log out</a>
+    </div>
+
+    <nav class="side-nav">
+        <ul class="side-nav-list list-unstyled">
+            <li>
+                <a [routerLink]="['/portal/profile']" routerLinkActive="active-link" class="side-nav-link">
+                    <i class="icon icon-user"></i>
+                    Profile info
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/portal/messages']" routerLinkActive="active-link" class="side-nav-link">
+                    <i class="icon icon-paper-plane"></i>
+                    Messages
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/portal/favourites']" routerLinkActive="active-link" class="side-nav-link">
+                    <i class="icon icon-heart"></i>
+                    Favourites
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/portal/announcements']" routerLinkActive="active-link" class="side-nav-link">
+                    <i class="icon icon-announs"></i>
+                    Announcements
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/public/search']" class="side-nav-link">
+                    <i class="icon icon-search"></i>
+                    Search
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

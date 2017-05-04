@@ -1,0 +1,36 @@
+<div class="lavs-slider"
+     #sliderVar
+     (window:resize)="onResize($event)"
+     on-mouseover="deleteInterval()"
+     on-mouseleave="setSliderInterval()"
+>
+    <div class="lavs-slider-inner">
+        <ul #sliderListVar
+            [ngStyle]="{'width.px': sliderListWidth, 'transform': 'translate('+ offsetX + 'px)'}"
+
+            class="slider-list clearfix"
+        >
+            <li *ngFor="let image of images; let isFirst = first" [class.active]="isFirst"
+                class="slider-list-item"
+                [ngStyle]="{'background-image': 'url(' + image.url + ')', 'width.px': slideWidth}"
+            >
+                <img src={{image.url}}>
+            </li>
+
+        </ul>
+
+        <button *ngIf="images && images.length > 1"
+                class="slider-control slider-control-left"
+                (click)="slideLeft()"
+                type="button">
+            <i class="icon icon-chevron-left"></i>
+        </button>
+
+        <button *ngIf="images && images.length > 1"
+                class="slider-control slider-control-right"
+                (click)="slideRight()"
+                type="button">
+            <i class="icon icon-chevrone-right"></i>
+        </button>
+    </div>
+</div>

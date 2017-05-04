@@ -1,0 +1,163 @@
+<form *ngIf="!success" class="form sign-up" (ngSubmit)="doSignUp(signUpForm)" name="signUpForm" [formGroup]="signUpForm"
+      novalidate>
+    <ul class="list-unstyled form-list">
+        <li class="form-list-item">
+            <md-input-container class="d-block">
+                <input mdInput
+                       placeholder="First Name"
+                       type="text"
+                       formControlName="firstName">
+            </md-input-container>
+
+            <div class="form-error text-danger"
+                 *ngIf="signUpForm.get('firstName').touched"
+            >
+                <p *ngIf="signUpForm.get('firstName').hasError('maxlength')">
+                    *This field be more than 35 characters long.
+                </p>
+            </div>
+        </li>
+
+        <li class="form-list-item">
+            <md-input-container class="d-block">
+                <input mdInput
+                       placeholder="Last Name"
+                       type="text"
+                       formControlName="lastName">
+            </md-input-container>
+
+            <div class="form-error text-danger"
+                 *ngIf="signUpForm.get('lastName').touched "
+            >
+                <p *ngIf="signUpForm.get('lastName').hasError('maxlength')">
+                    *This field be more than 35 characters long.
+                </p>
+            </div>
+        </li>
+
+        <li class="form-list-item">
+            <md-input-container class="d-block">
+                <input mdInput
+                       placeholder="Email"
+                       type="text"
+                       formControlName="email">
+            </md-input-container>
+
+            <div class="form-error text-danger" *ngIf="signUpForm.get('email').touched">
+                <p *ngIf="signUpForm.get('email').hasError('required')">
+                    *The field shouldn't be empty.
+                </p>
+
+                <p *ngIf="signUpForm.get('email').hasError('pattern')">
+                    *Email address is not valid
+                </p>
+
+                <p *ngIf="signUpForm.get('email').hasError('maxlength')">
+                    *This field be more than 35 characters long.
+                </p>
+            </div>
+
+            <div class="form-error text-danger" *ngIf="emailExist">
+                *User with such email already exist
+            </div>
+        </li>
+
+        <li class="form-list-item">
+            <md-input-container class="d-block">
+                <input mdInput
+                       placeholder="Password"
+                       type="password"
+                       class="form-control"
+                       formControlName="password">
+            </md-input-container>
+
+            <div class="form-error text-danger"
+                 *ngIf="
+                    signUpForm.get('password').errors &&
+                    (signUpForm.get('password').dirty || signUpForm.get('password').touched)"
+
+            >
+                <p *ngIf="signUpForm.get('password').hasError('required')">
+                    *The field shouldn't be empty.
+                </p>
+
+                <p *ngIf="signUpForm.get('password').hasError('pattern')">
+                    *Password must be at least 8 characters long, have both uppercase and lowercase letters also have
+                    digits and/or punctuation (this includes !@#$%^&*()_-+=[]:;'")
+                </p>
+
+                <p *ngIf="signUpForm.get('password').hasError('maxlength')">
+                    *This field be more than 35 characters long.
+                </p>
+            </div>
+        </li>
+
+        <li class="form-list-item">
+            <md-input-container class="d-block">
+                <input mdInput
+                       placeholder="Confirm Password"
+                       type="password"
+                       validateEqual="password"
+                       formControlName="confirmPassword">
+            </md-input-container>
+
+            <div class="form-error text-danger"
+                 *ngIf="signUpForm.get('confirmPassword').touched ||
+                        signUpForm.hasError('nomatch')"
+            >
+                <p *ngIf="signUpForm.get('confirmPassword').hasError('required')">
+                    *The field shouldn't be empty.
+                </p>
+
+                <p *ngIf="signUpForm.get('confirmPassword').hasError('maxlength')">
+                    *This field be more than 35 characters long.
+                </p>
+
+                <p *ngIf="signUpForm.hasError('nomatch') && signUpForm.get('confirmPassword').dirty">
+                    Password does not match
+                </p>
+            </div>
+        </li>
+    </ul>
+
+    <div class="text-center text-uppercase alter-text">or</div>
+
+    <ul class="social-list">
+        <li class="social-list-item circle facebook">
+            <button md-button class="btn"><i class="icon icon-facebook"></i></button>
+        </li>
+        <li class="social-list-item circle google">
+            <button md-button class="btn"><i class="icon icon-gplus"></i></button>
+        </li>
+        <li class="social-list-item circle twitter">
+            <button md-button class="btn"><i class="icon icon-twitter"></i></button>
+        </li>
+    </ul>
+
+    <div class="form-check">
+            <md-checkbox formControlName="termsChecked">
+                By signing up, I agree
+                <a href="#">Terms of services,</a>
+                <a href="#">Nondiscrimination policy,</a>
+                <a href="#">Payment Terms of Service,</a>
+                <a href="#">Privacy Policy,</a> and
+                <a href="#">Host Guarantee Terms</a>
+            </md-checkbox>
+
+        <div class="form-error text-danger"
+             *ngIf="signUpForm.get('termsChecked').hasError('required') && signUpForm.get('termsChecked').touched"
+        >
+            *Please, agree with Terms and Conditionals
+        </div>
+    </div>
+
+    <button [disabled]="signUpForm.invalid" class="btn btn-block btn-success">Register</button>
+</form>
+
+<div *ngIf="success" class="register-msg">
+    <h2>Thank you for registration, please confirm your email</h2>
+</div>
+
+
+
+

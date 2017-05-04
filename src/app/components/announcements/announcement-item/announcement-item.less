@@ -1,0 +1,164 @@
+.announcement-list-item {
+  padding: 15px;
+  background: #fff;
+  margin: 0 0 2rem;
+
+  -webkit-box-shadow: 0 1px 9px -2px #000;
+  -moz-box-shadow: 0 1px 9px -2px #000;
+  box-shadow: 0 1px 9px -2px #000;
+
+  -webkit-transition: .35s;
+  transition: .35s;
+
+  &.searchhidden {
+    opacity: .4;
+  }
+
+  .thumb-wrap {
+    position: relative;
+
+    .add-favourite {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      color: #fff;
+      text-shadow: 0 0 2px #000;
+      opacity: 0;
+
+      -webkit-transition: opacity .4s;
+      transition: opacity .4s;
+
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+
+      cursor: pointer;
+
+      z-index: 1000;
+    }
+
+    &:hover .add-favourite {
+      opacity: 1;
+    }
+  }
+
+}
+
+.card {
+
+  &-title {
+    font: 600 1.45rem "Helvetica Neue", Helvetica, Arial;
+    margin: 0 0 5px;
+
+    -webkit-transition: .35s;
+    transition: .35s;
+
+    & a {
+      color: #2a292c;
+
+      &:hover {
+        color: #025aa5;
+      }
+    }
+  }
+
+  &-address {
+    font: italic 0.875rem "Helvetica Neue", Helvetica, Arial;
+    color: #7d7d7d;
+  }
+
+  &-tool {
+    display: flex;
+    flex-direction: column;
+    vertical-align: bottom;
+    padding-top: 15px;
+  }
+}
+
+.price {
+  display: block;
+  text-align: right;
+
+  &-amount {
+    display: block;
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+
+  &-option {
+    display: block;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #646269;
+  }
+}
+
+.rented-link {
+  display: block;
+  font-size: 14px;
+  text-align: right;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .icon {
+    font-size: 18px;
+    display: inline-block;
+    margin-left: 5px;
+  }
+}
+
+.description {
+  font: 0.875rem/1.5 "Helvetica Neue", Helvetica, Arial;
+}
+
+.strip {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  .thumb-wrap {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 25%;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .announcement-body {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 75%;
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+
+    padding-left: 15px;
+  }
+}
+
+.card-item{
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .thumb-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-top: 70%;
+    margin: 0 0 15px;
+
+    & > div {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+  }
+}

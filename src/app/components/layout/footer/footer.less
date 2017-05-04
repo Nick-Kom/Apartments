@@ -1,0 +1,40 @@
+.footer {
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  &-social{
+    padding-left:20px;
+
+    .list-inline {
+      margin: 0;
+    }
+
+    &-link {
+      display: table;
+      width: 40px;
+      height: 40px;
+      color: #616161;
+      border: 1px solid #616161;
+      border-radius: 50%;
+
+      -webkit-transition: .35s;
+      -moz-transition: .35s ;
+      -ms-transition: .35s ;
+      -o-transition: .35s ;
+      transition: .35s ;
+
+      &:hover,
+      &:focus {
+        color: #014c8c;
+        box-shadow: 0 1px 11px -3px #014c8c;
+      }
+
+      .icon {
+        display: table-cell;
+        line-height: 0;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
+}

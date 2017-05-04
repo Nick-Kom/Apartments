@@ -1,0 +1,118 @@
+<div class="single-page" *ngIf="announcement">
+    <div class="row single-page-block">
+
+        <div class="col-12">
+            <h1 class="main-titles text-center single-page-title">{{announcement.description.title}}</h1>
+        </div>
+
+        <div class="col-7">
+            <lavs-slider *ngIf="images && images.length > 0" [images]="images"></lavs-slider>
+        </div>
+
+        <div class="col-5">
+            <div class="price-block">
+                <p>
+                    Price:
+                    <span class="d-block price-total text-success">{{announcement.price.price | currency:'USD':true}}</span>
+                    <span class="d-block price-type">{{announcement.price.type}}</span>
+                </p>
+            </div>
+
+            <div *ngIf="authorized; else notAvtorized">
+                <form *ngIf="!res; else message"
+                      class="form booking-form"
+                      (ngSubmit)="bookingRequest(requestForm)"
+                      [formGroup]="requestForm">
+
+                    <ul class="form-list">
+                        <li class="form-list-item">
+                            <md2-datepicker class="d-block"
+                                            type="date"
+                                            min="{{minDate}}"
+                                            placeholder="Check in date"
+                                            format="DD/MM/YYYY"
+                                            formControlName="checkIn">
+                            </md2-datepicker>
+                        </li>
+
+                        <li class="form-list-item">
+                            <md2-datepicker class="d-block"
+                                            type="date"
+                                            min="{{minDate}}"
+                                            placeholder="Check out date"
+                                            format="DD/MM/YYYY"
+                                            formControlName="checkOut">
+                            </md2-datepicker>
+                        </li>
+                    </ul>
+
+                    <button class="btn-primary" [disabled]="requestForm.invalid" md-button>
+                        Request a book!
+                    </button>
+                </form>
+
+                <ng-template #message>
+                    <div class="response">
+                        <h2 class="h3 text-success">Your request was successfully sent!</h2>
+                    </div>
+                </ng-template>
+            </div>
+
+            <ng-template #notAvtorized>
+                <div class="not-avtorized text-center">
+                    <h2 class="h3 heading">We are sorry, this is booking option available only for logged in users.</h2>
+                    <p>
+                        Please <a routerLink="public/sign-up">create</a> a new  account, or
+                        <a routerLink="public/sign-in">log in</a> if you already have one.
+                    </p>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <div  class="owner-info">
+
+                <div class="profile-avatar-img rounded-circle">
+                    <img class="img-fluid" src="../../../assets/img/user.png" alt="">
+                </div>
+
+                <div class="owner-name"> User Name </div>
+
+                <ul class="contact-tools">
+                    <li class="contact-tools-item">
+                        <a class="contact-tools-btn" href=""><i class="icon icon-gmail"></i></a>
+                    </li>
+                    <li class="contact-tools-item">
+                        <a class="contact-tools-btn" href=""><i class="icon icon-phone"></i></a>
+                    </li>
+                    <li *ngIf="authorized" class="contact-tools-item">
+                        <a  class="contact-tools-btn"
+                            (click)="startConversation()">
+                            <i class="icon icon-mail"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="single-page-block description">
+                <h2 class="h4">Description:</h2>
+                {{announcement.description.shortDescription}}
+            </div>
+
+            <div class="single-page-block options">
+                <h2 class="h4">Apartment amenities</h2>
+
+                <div class="row">
+                    <div *ngFor="let option of announcement.facilities" class="col-3 text-center">
+                        <i class="icon icon-amenity{{option.id}}"></i>
+                        <span class="text-lowercase d-block">{{option.title}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

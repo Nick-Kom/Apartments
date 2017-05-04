@@ -1,0 +1,96 @@
+<li class="announcement-list-item">
+    <div *ngIf="view === 'strip'" class="strip">
+        <div class="thumb-wrap">
+            <div>
+                <a class="add-favourite">
+                    <i class="icon icon-heart"></i>
+                </a>
+                <lavs-slider *ngIf="images.length > 0" [images]="images"></lavs-slider>
+            </div>
+        </div>
+
+        <div class="announcement-body" *ngIf="item">
+            <header class="row">
+                <div class="col-9">
+                    <h2 class="card-title">
+                        <a routerLink="/public/announcement/{{id}}">{{item.title}}</a>
+                    </h2>
+                    <p class="card-address" *ngIf="address">
+                        {{address.country}}
+                        {{address.city}}
+                        {{address.street}}
+                    </p>
+                </div>
+
+                <div class="col-3">
+                    <strong class="price" *ngIf="priceVal">
+                        <span class="price-amount">{{priceVal.price | currency:'USD':true}}</span>
+                        <span class="price-option">{{priceVal.type}}</span>
+                    </strong>
+
+                    <a class="text-primary rented-link"
+                       routerLink="/portal/announcements/{{id}}/rented-dates">
+                        Rented Dates <i class="icon icon-calendar"></i>
+                    </a>
+                </div>
+            </header>
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="description">
+                        <p>
+                            {{item.shortDescription}}
+                        </p>
+                    </div>
+
+                    <form>
+                        <md-checkbox
+                                ngDefaultControl
+                                formControlName="hideAnnouncement"
+                                (change)="hideFromSearch()"
+                                [checked]="announcement.hidden"
+                        >
+                            {{announcement.hidden ? 'Hidden' : 'Hide your announcement'}}
+
+                        </md-checkbox>
+                    </form>
+                </div>
+
+                <div class="card-tool col-2 d-flex justify-content-end">
+                    <a class="btn btn-success btn-block btn-sm align-bottom"
+                       routerLink="/portal/announcements/edit/{{id}}">Edit</a>
+                    <button md-button (click)="openDialog()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="view === 'card'" class="card-item">
+        <div class="thumb-wrap">
+            <div class="">
+                <a class="add-favourite">
+                    <i class="icon icon-heart"></i>
+                </a>
+
+                <lavs-slider *ngIf="images.length > 0" [images]="images"></lavs-slider>
+            </div>
+        </div>
+
+        <div class="announcement-body">
+            <h2 class="card-title">
+                <a routerLink="/public/announcement/{{id}}">{{item.title}}</a>
+            </h2>
+
+            <p class="card-address" *ngIf="address">
+                {{address.country}}
+                {{address.city}}
+                {{address.street}}
+            </p>
+
+            <strong class="price d-flex justify-content-between" *ngIf="priceVal">
+                <span class="price-amount">{{priceVal.price | currency:'USD':true}}</span>
+                <span class="price-option">{{priceVal.type}}</span>
+            </strong>
+        </div>
+    </div>
+</li>

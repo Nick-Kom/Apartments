@@ -1,0 +1,102 @@
+.user {
+
+  &-card {
+    background: #fff;
+    margin: 0 0 30px;
+
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+
+    -webkit-box-shadow: 0 0 5px #ddd;
+    -moz-box-shadow: 0 0 5px #ddd;
+    box-shadow: 0 0 5px #ddd;
+
+    .portal-section-header {
+      margin-bottom: 15px;
+    }
+
+    .user-thumb {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      min-height: 100px;
+
+      &-block {
+        padding-left: 15px;
+        padding-bottom: 15px;
+      }
+
+      .thumb-controls{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0, .65);
+        padding: 7px 0;
+
+        -webkit-transform: translateY(100%);
+        transform: translateY(100%);
+
+        -webkit-transition: .4s;
+        transition: .4s ;
+        
+        .control{
+          color: #fff;
+        }
+      }
+
+      &:hover .thumb-controls{
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &-info {
+    padding-right: 15px;
+
+    &-list {
+      list-style: none;
+      padding: 15px 0 0;
+      margin: 0 0 10px;
+      overflow: hidden;
+
+      &-item {
+        overflow: hidden;
+        margin: 0 0 10px;
+      }
+    }
+  }
+}
+
+.form-list{
+  padding-top: 15px;
+  margin: 0 0 5px;
+
+  &-item {
+    overflow: hidden;
+    margin: 0;
+  }
+}
+
+@media all and (max-width: 575px) {
+  .user {
+    &-thumb {
+      max-width: 120px;
+      margin: 0 auto;
+
+      &-block {
+        padding: 15px;
+      }
+
+      .thumb-controls{
+        display: none;
+      }
+    }
+
+    &-info {
+      padding: 0 15px 15px;
+    }
+  }
+}

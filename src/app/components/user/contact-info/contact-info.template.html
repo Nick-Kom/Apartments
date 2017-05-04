@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="col-12">
+        <h2 class="portal-section-header">Contact info</h2>
+    </div>
+</div>
+
+<div class="contacts-block">
+    <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-6">
+            <form class="contacts-creator"
+                  (ngSubmit)="addPhoneForm(phoneForm)"
+                  [formGroup]="phoneForm"
+            >
+                <div class="row">
+                    <div class="col-8">
+                        <md-input-container class="d-block">
+                            <input mdInput
+                                   type="text"
+                                   class="form-control"
+                                   formControlName="phone"
+                                   placeholder="Phone"
+                            >
+                        </md-input-container>
+                    </div>
+
+                    <div class="col-4">
+                        <button [disabled]="phoneForm.invalid"
+                                class="btn add btn-primary btn-block">
+                            Add
+                        </button>
+                    </div>
+
+                    <div class="form-error text-danger"
+                         *ngIf="phoneForm.get('phone').errors &&
+                                    phoneForm.get('phone').touched  ||
+                                    badPhoneValue"
+                    >
+                        <p *ngIf="phoneForm.get('phone').hasError('required')">
+                            *The field shouldn't be empty.
+                        </p>
+                        <p *ngIf="phoneForm.get('phone').hasError('pattern')">
+                            *Phone is not valid
+                        </p>
+                        <p *ngIf="badPhoneValue">This phone already exist.</p>
+                    </div>
+                </div>
+            </form>
+
+            <ul class="contact-list list-unstyled">
+                <li class="form-list-item" *ngFor="let phone of phones">
+                    <contact-phone [contact]="phone"
+                                   (deletePhoneEvent)="deletePhone($event)"
+                    ></contact-phone>
+                </li>
+
+                <li *ngIf="phones && phones.length === 0">
+                    You don't have any phones yet.
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="col-sm-10 col-md-6">
+            <form class="contacts-creator"
+                  (ngSubmit)="addEmailForm(emailForm)"
+                  name="signInForm"
+                  [formGroup]="emailForm"
+            >
+                <div class="row">
+                    <div class="col-8">
+                        <md-input-container class="d-block">
+                            <input mdInput
+                                   placeholder="Email...."
+                                   type="text"
+                                   class="form-control"
+                                   formControlName="email"
+                            >
+                        </md-input-container>
+                    </div>
+
+                    <div class="col-4">
+                        <button [disabled]="emailForm.invalid"
+                                class="btn add btn-primary btn-block">
+                            Add
+                        </button>
+                    </div>
+
+                    <div class="form-error text-danger"
+                         *ngIf="emailForm.get('email').errors &&
+                                emailForm.get('email').touched  ||
+                                badEmailValue
+                    ">
+                        <p *ngIf="emailForm.get('email').hasError('required')">
+                            *The field shouldn't be empty.
+                        </p>
+                        <p *ngIf="emailForm.get('email').hasError('pattern')">
+                            *Email address is not valid
+                        </p>
+                        <p *ngIf="badEmailValue">
+                            This email already exist.
+                        </p>
+                    </div>
+                </div>
+            </form>
+
+            <ul class="contact-list list-unstyled">
+                <li class="form-list-item" *ngFor="let email of emails">
+                    <contact-mail [contact]="email"
+                                  (deleteEmailEvent)="deleteEmail($event)"
+                                  (updateEmailEvent)="changeEmail($event)"
+                    ></contact-mail>
+                </li>
+                <li *ngIf="emails && emails.length === 0">
+                    You don't have any emails yet.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

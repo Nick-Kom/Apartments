@@ -1,0 +1,60 @@
+<form class="form" (ngSubmit)="doLogin(signInForm)" name="signInForm" [formGroup]="signInForm" novalidate>
+    <ul class="list-unstyled form-list login-inputs">
+        <li class="form-list-item">
+            <md-input-container  class="d-block">
+                <input mdInput placeholder="Email" type="text" class="form-control" formControlName="email">
+            </md-input-container>
+
+            <div class="form-error text-danger"
+                 *ngIf="
+                    signInForm.get('email').errors &&
+                    signInForm.get('email').touched  ||
+                    badEmailValue
+                ">
+
+                <p *ngIf="signInForm.get('email').hasError('required')">
+                    *The field shouldn't be empty.
+                </p>
+                <p *ngIf="signInForm.get('email').hasError('pattern')">
+                    *Email address is not valid
+                </p>
+                <p *ngIf="badEmailValue">User with such email does not exist.</p>
+            </div>
+        </li>
+
+        <li class="form-list-item">
+            <md-input-container class="d-block">
+                <input mdInput placeholder="Password" type="password" formControlName="password">
+            </md-input-container>
+
+            <div  class="form-error text-danger"
+                  *ngIf="badPasswordValue"
+            >
+                <p *ngIf="badPasswordValue">
+                    *Your password is incorrect.
+                </p>
+            </div>
+        </li>
+    </ul>
+
+    <div class="text-right">
+        <a href="#">Forgot your password?</a>
+    </div>
+
+    <div class="text-center text-uppercase alter-text">or</div>
+
+    <ul class="social-list">
+        <li class="social-list-item circle facebook">
+            <button md-button class="btn"><i class="icon icon-facebook"></i></button>
+        </li>
+        <li class="social-list-item circle google">
+            <button md-button class="btn"><i class="icon icon-gplus"></i></button>
+        </li>
+        <li class="social-list-item circle twitter">
+            <button md-button class="btn"><i class="icon icon-twitter"></i></button>
+        </li>
+    </ul>
+
+    <button md-button [disabled]="signInForm.invalid" class="btn btn-block btn-primary">Log in</button>
+</form>
+

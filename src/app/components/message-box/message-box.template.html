@@ -1,0 +1,87 @@
+<section class="message-box">
+    <header class="message-box-header">
+        <div class="row">
+            <div class="col-sm-8 d-flex align-items-center">
+                <div class="message-toolbar d-flex">
+                    <md-checkbox>Check all</md-checkbox>
+
+                    <button md-button [mdMenuTriggerFor]="selectMenu">Select</button>
+                    <md-menu #selectMenu="mdMenu">
+                        <button md-menu-item>All</button>
+                        <button md-menu-item>Read</button>
+                        <button md-menu-item>Unread</button>
+                        <button md-menu-item>Delete</button>
+                    </md-menu>
+
+                    <button md-button [mdMenuTriggerFor]="actionMenu">Action</button>
+                    <md-menu #actionMenu="mdMenu">
+                        <button md-menu-item>Mark as read</button>
+                        <button md-menu-item>Mark as unread</button>
+                    </md-menu>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <md-input-container class="d-block">
+                    <input mdInput placeholder="Search Conversation">
+                </md-input-container>
+            </div>
+        </div>
+    </header>
+
+    <div class="message-box-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Аttendee</th>
+                <th>Message</th>
+                <th>Announcement title</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="unread" *ngFor="let conversation of conversations">
+                <td>
+                    <md-checkbox></md-checkbox>
+                </td>
+
+                               <td *ngIf="!conversation.conversationInfoBean.lastName  && !conversation.conversationInfoBean.firstName" class="sender">
+                                   <a routerLink="/portal/messages/{{conversation.id}}">
+                                       {{conversation.conversationInfoBean.email}}
+                                   </a>
+                               </td>
+                               <td *ngIf="conversation.conversationInfoBean.lastName  && conversation.conversationInfoBean.firstName" class="sender">
+                                   <a routerLink="/portal/messages/{{conversation.id}}">
+                                       {{conversation.conversationInfoBean.firstName}}
+                                       {{conversation.conversationInfoBean.lastName}}
+                                   </a>
+                               </td>
+
+
+ <!--               <td class="sender">
+                    <a routerLink="/portal/messages/{{conversation.id}}">
+                        {{conversation.conversationInfoBean.firstName}}
+                    </a>
+                </td>-->
+
+
+                <td *ngIf="conversation.conversationInfoBean.text" class="subject">
+                    {{conversation.conversationInfoBean.text | truncate : 10}}
+                </td>
+                <td *ngIf="conversation.conversationInfoBean.text==null" class="subject">
+                    ...
+                </td>
+                <td class="subject">{{conversation.titleAnnouncement}}</td>
+                <td class="date">{{conversation.conversationInfoBean.date | date:'medium' }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <button md-button class="btn-success btn-more">Load more conversations</button>
+    </div>
+</section>
+

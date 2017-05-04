@@ -1,0 +1,53 @@
+<header class="header">
+    <nav class="navbar navbar-toggleable-xl navbar-light">
+        <a class="navbar-brand" href="/">
+            <img src='../../../assets/img/logo.svg' width="100" alt="">
+        </a>
+
+        <div *ngIf="!authorized" class="collapse navbar-collapse align-items-center justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/public/search">Search apartments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/sign-in">Sign in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/sign-up">Sign up</a>
+                </li>
+            </ul>
+        </div>
+
+        <div *ngIf="authorized" class="collapse navbar-collapse align-items-center justify-content-end">
+            <div class="user-thumb rounded-circle">
+                <img class="img-fluid" src={{avatar}} alt="">
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/portal">Go to portal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-primary" (click)="doLogout($event)">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

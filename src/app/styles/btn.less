@@ -1,0 +1,25 @@
+.btn {
+  cursor: pointer;
+
+  &-transparent {
+    border: none;
+    background-color: transparent;
+  }
+
+  &-default {
+    background: #fff;
+    border: 1px solid #dedede;
+
+    &:hover,
+    &:focus {
+      -webkit-box-shadow: inset 1px 1px 9px #dedede;
+      -moz-box-shadow: inset 1px 1px 9px #dedede;
+      box-shadow: inset 1px 1px 9px #dedede;
+    }
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    background: #dedede;
+  }
+}

@@ -1,0 +1,76 @@
+<div class="schedule-wrap">
+
+    <p-schedule [events]="requests"
+                [header]="header"
+                [eventLimit]="4"
+                [editable]="false"
+                [height]="'auto'"
+                (onDayClick)="handleDayClick($event)"
+                (onEventClick)="handleEventClick($event)">
+    </p-schedule>
+
+    <div class="backdrop" [class.active]="panelActive" (click)="closePanel()"></div>
+
+    <div class="side-panel" [class.active]="panelActive">
+        <div class="row">
+            <div class="col-12 text-right">
+                <button md-button (click)="closePanel()">Close</button>
+            </div>
+
+            <div class="col-12">
+                <h4 class="h5 text-center">Request info:</h4>
+            </div>
+        </div>
+
+        <form (ngSubmit)="saveEvent(requestForm)" [formGroup]="requestForm">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="side-panel-list list-unstyled">
+                        <li class="side-panel-item">
+                            <md-input-container class="d-block">
+                                <input type="text" mdInput placeholder="Title" formControlName="comment">
+                            </md-input-container>
+                        </li>
+
+                        <li class="side-panel-item">
+                            <md2-datepicker class="d-block"
+                                            type="date"
+                                            min="{{minDate}}"
+                                            placeholder="Check In*"
+                                            format="DD/MM/YYYY"
+                                            formControlName="checkIn">
+                            </md2-datepicker>
+                        </li>
+
+                        <li class="side-panel-item">
+                            <md2-datepicker *ngIf="panelActive"
+                                            class="d-block"
+                                            type="date"
+                                            min="{{minDate}}"
+                                            placeholder="Check Out*"
+                                            format="DD/MM/YYYY"
+                                            formControlName="checkOut">
+                            </md2-datepicker>
+                        </li>
+
+                        <li class="side-panel-item">
+                            <md-checkbox formControlName="approved">Approved</md-checkbox>
+                        </li>
+
+                        <li class="side-panel-item">
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    <button type="button" md-button (click)="deleteRequest()">Delete</button>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <button class="btn btn-success" md-button type="submit">Save</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

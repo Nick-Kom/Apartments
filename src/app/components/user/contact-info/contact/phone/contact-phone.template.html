@@ -1,0 +1,60 @@
+<div class="row contact-item" *ngIf="!edit; else form">
+    <div class="col-8">
+        <a *ngIf="phone" class="link" href="tel:{{phone.telephone}}">{{phone.telephone}}</a>
+    </div>
+
+    <div class="col-4 d-flex align-items-center">
+        <div class="btn-toolbar">
+            <button md-button class="btn btn-sm btn-secondary float-left" (click)="deletePhone()" type="button">
+                <i class="icon icon-dustbin"></i>
+            </button>
+
+            <button md-button class="btn btn-sm btn-success float-right" (click)="changeView()" type="button">
+                <i class="icon icon-edit"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ng-template #form>
+    <form [formGroup]="phoneForm" (ngSubmit)="changePhone(phoneForm)">
+        <div class="row contact-item">
+            <div class="col-8">
+                <md-input-container class="d-block">
+                    <input mdInput type="text"
+                           class="form-control form-input"
+                           formControlName="telephone"
+                           placeholder="Phone"
+                    >
+                </md-input-container>
+
+                <div class="text-danger"
+                     *ngIf="phoneForm.get('telephone').errors && phoneForm.get('telephone').touched"
+                >
+                    <span *ngIf="phoneForm.get('telephone').hasError('pattern')" class="d-block text-sm">
+                        Your phone number is invalid
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-4 d-flex align-items-start">
+                <div class="btn-toolbar">
+                    <button class="btn btn-sm btn-secondary"
+                            md-button
+                            (click)="changeView()"
+                            type="button">
+                        &times;
+                    </button>
+
+                    <button class="btn btn-sm btn-success"
+                            [disabled]="phoneForm.get('telephone').value.trim().length === 0"
+                            md-button
+                            type="submit"
+                    >
+                        <i class="icon icon-save"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</ng-template>

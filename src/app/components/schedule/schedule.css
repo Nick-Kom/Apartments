@@ -1,0 +1,81 @@
+.fc .fc-event {
+    background: #88cd7e;
+    color: #fff;
+}
+
+.fc thead td,
+.fc thead th {
+    border: none;
+}
+
+.fc tbody td {
+    border-color: #ddd;
+}
+
+.fc .fc-row {
+    border-color: transparent;
+}
+
+.fc tbody td.fc-today {
+    background: rgb(255, 250, 210);
+}
+
+.fc .fc-popover {
+    max-height: 65%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff;
+    box-shadow: 0 0 7px -1px;
+
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.fc .fc-popover .fc-header {
+    text-align: center;
+}
+
+.fc .fc-popover .fc-header .fc-title {
+    float: none;
+}
+
+.fc-popover .fc-day-grid-event,
+.fc-popover .fc-event {
+    display: block;
+    margin: 0 0 5px;
+}
+
+.fc-popover .fc-content {
+    white-space: normal;
+}
+
+.fc-toolbar h2 {
+    font-size: 1.5rem;
+    color: #292b2c;
+}
+
+.fc .fc-toolbar button {
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.fc .fc-toolbar button:before {
+    display: inline-block;
+    font-family: fontello;
+    font-size: 1.5rem;
+}
+
+.fc .fc-toolbar .fc-next-button:before {
+    content: "\e807";
+}
+
+.fc .fc-toolbar .fc-prev-button:before {
+    content: "\e806";
+}
+
+.fc .fc-day-grid-event .fc-time {
+    display: none;
+}

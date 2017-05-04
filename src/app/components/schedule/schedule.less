@@ -1,0 +1,57 @@
+.schedule-wrap {
+  background: #fff;
+  padding: 30px 15px;
+}
+
+.side-panel {
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 360px;
+  max-height: 100%;
+  padding: 15px;
+  background: #fff;
+  overflow: auto;
+
+  box-shadow: 0 0 8px #ddd;
+
+  -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
+
+  -webkit-transition: .35s;
+  transition: .35s ;
+
+  z-index: 5000;
+
+  &.active {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+
+  &-list{
+    padding-top: 15px;
+  }
+
+  &-item {
+    margin: 0 0 15px;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #000;
+  opacity: .4;
+  z-index:4000;
+
+  &.active {
+    display: block;
+  }
+}

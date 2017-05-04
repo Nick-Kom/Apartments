@@ -1,0 +1,28 @@
+<div class="avatar-modal">
+    <span class="close-btn" (click)="dialogRef.close()">
+        &times;
+    </span>
+
+    <h5 class="modal-heading">
+        Change avatar
+    </h5>
+
+    <div class="text-center">
+        <div class="avatar-change-modal">
+            <img *ngIf="avatar"
+                 width="200" height="auto"
+                 class="avatar-change-modal-img img-fluid"
+                 src={{avatar}} alt="avatar">
+
+            <p *ngIf="!avatar"
+               class="text-center">
+                You don't have any avatar
+            </p>
+        </div>
+
+        <file-upload
+                #f
+                (change)="f.uploadAva($event)">
+        </file-upload>
+    </div>
+</div>

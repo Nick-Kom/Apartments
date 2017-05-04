@@ -1,0 +1,298 @@
+<form class="form form-lg form-def"
+      *ngIf="announcementForm"
+      (ngSubmit)="saveDetails(announcementForm)"
+      name="announcementForm"
+      [formGroup]="announcementForm"
+>
+    <div class="form-block" formGroupName="address">
+        <h2 class="form-block-heading flag-label primary">Address</h2>
+
+        <ul class="row form-list">
+            <li class="col-md-6 col-lg-4 form-list-item">
+                <md-input-container class="d-block">
+                    <input type="text" mdInput placeholder="*Country" formControlName="country">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('address.country').touched "
+                >
+                    <p *ngIf="announcementForm.get('address.country').hasError('maxlength')">
+                        *This field be more than 50 characters long.
+                    </p>
+
+                    <p *ngIf="announcementForm.get('address.country').hasError('required')">
+                        *This is required field
+                    </p>
+                </div>
+            </li>
+
+            <li class="col-md-6 col-lg-4 form-list-item">
+                <md-input-container class="d-block">
+                    <input type="text" mdInput placeholder="*State" formControlName="region">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('address.region').touched "
+                >
+                    <p *ngIf="announcementForm.get('address.region').hasError('maxlength')">
+                        *This field be more than 50 characters long.
+                    </p>
+
+                    <p *ngIf="announcementForm.get('address.region').hasError('required')">
+                        *This is required field
+                    </p>
+                </div>
+            </li>
+
+            <li class="col-md-6 col-lg-4 form-list-item">
+                <md-input-container class="d-block">
+                    <input type="text" mdInput placeholder="*City" formControlName="city">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('address.city').touched "
+                >
+                    <p *ngIf="announcementForm.get('address.city').hasError('maxlength')">
+                        *This field be more than 50 characters long.
+                    </p>
+
+                    <p *ngIf="announcementForm.get('address.city').hasError('required')">
+                        *This is required field
+                    </p>
+                </div>
+            </li>
+
+            <li class="col-md-6 col-lg-4 form-list-item">
+                <md-input-container class="d-block">
+                    <input type="text" mdInput placeholder="*Street" formControlName="street">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('address.street').touched "
+                >
+                    <p *ngIf="announcementForm.get('address.street').hasError('maxlength')">
+                        *This field be more than 50 characters long.
+                    </p>
+
+                    <p *ngIf="announcementForm.get('address.street').hasError('required')">
+                        *This is required field
+                    </p>
+                </div>
+            </li>
+
+            <li class="col-md-6 col-lg-4 form-list-item">
+                <md-input-container class="d-block">
+                    <input type="text" mdInput placeholder="*Apartment" formControlName="appartment">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('address.appartment').touched "
+                >
+                    <p *ngIf="announcementForm.get('address.appartment').hasError('maxlength')">
+                        *This field be more than 50 characters long.
+                    </p>
+
+                    <p *ngIf="announcementForm.get('address.appartment').hasError('required')">
+                        *This is required field
+                    </p>
+                </div>
+            </li>
+
+            <li class="col-md-6 col-lg-4  form-list-item">
+                <a class="btn btn-outline-primary" (click)="showMap()">Match on map</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-block" formGroupName="priceBlock">
+        <h2 class="form-block-heading flag-label primary">Price</h2>
+
+        <ul class="row form-list">
+            <li class="col-lg-4 col-md-6 form-list-item">
+                <md-input-container class="d-block">
+                    <input type="number" mdInput placeholder="Price" formControlName="price" min="1">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('priceBlock.price').touched "
+                >
+                    <p *ngIf="announcementForm.get('priceBlock.price').hasError('maxlength')">
+                        *This field be more than 20 characters long.
+                    </p>
+
+                    <p *ngIf="announcementForm.get('priceBlock.price').hasError('required')">
+                        *This is required field
+                    </p>
+
+                    <p *ngIf="announcementForm.get('priceBlock.price').hasError('pattern')">
+                        *Only integer and float allowed for this field.
+                    </p>
+                </div>
+            </li>
+
+            <li class="col-lg-4 col-md-6 form-list-item">
+                <md-radio-group formControlName="type">
+                    <md-radio-button name="payment-method" [value]="'PER DAY'">
+                        Per day
+                    </md-radio-button>
+
+                    <md-radio-button name="payment-method" [value]="'PER MONTH'">
+                        Per month
+                    </md-radio-button>
+                </md-radio-group>
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-block" formGroupName="description">
+        <h2 class="form-block-heading flag-label primary">Description</h2>
+
+        <ul class="row form-list">
+            <li class="col-lg-4 col-md-6 form-list-item">
+                <md-input-container class="d-block">
+                    <input type="number" mdInput placeholder="Rooms" formControlName="room">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('description.room').touched "
+                >
+                    <p *ngIf="announcementForm.get('description.room').hasError('pattern')">
+                        *Only integer allowed for this field.
+                    </p>
+                </div>
+            </li>
+
+            <li class="col-lg-4 col-md-6 form-list-item">
+                <md-input-container class="d-block">
+                    <input type="number" mdInput placeholder="Living places" formControlName="livingPlaces">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('description.livingPlaces').touched "
+                >
+                    <p *ngIf="announcementForm.get('description.livingPlaces').hasError('pattern')">
+                        *Only integer allowed for this field.
+                    </p>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="row form-list" formGroupName="options">
+            <li *ngFor="let option of annoucementOptions" class="col-12 col-md-6 col-lg-4 form-list-item">
+                <md-checkbox
+                        ngDefaultControl
+                        formControlName="{{option.id}}"
+
+                >
+                    {{option.title}}
+                </md-checkbox>
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <md-input-container class="d-block">
+                    <input type="text" mdInput placeholder="*Title" formControlName="title">
+                </md-input-container>
+
+                <div class="form-error text-danger"
+                     *ngIf="announcementForm.get('description.title').touched "
+                >
+                    <p *ngIf="announcementForm.get('description.title').hasError('maxlength')">
+                        *This field be more than 50 characters long.
+                    </p>
+
+                    <p *ngIf="announcementForm.get('description.title').hasError('required')">
+                        *This is required field
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-lg-8">
+                <md-input-container class="d-block">
+                    <textarea rows="5" mdInput placeholder="Description" formControlName="shortDescription"></textarea>
+                </md-input-container>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-block">
+        <h2 class="form-block-heading flag-label primary">Images</h2>
+        <div class="d-flex justify-content-end">
+            <div  class="image-loader">
+                <button *ngIf="!loader" type="button" class="btn  btn-success">
+                  Choose file
+                </button>
+                <input  class="add-image" #fileInput type="file" multiple (change)="addImages()"/>
+            </div>
+            <img *ngIf="loader" class="loader" src="../../../assets/img/loader.gif" alt="Loading..."/>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3" *ngFor="let image of images">
+                <div class="img-wrap">
+                    <img class="img-fluid img-appartment"
+                         src="{{image.url}}" alt="">
+                </div>
+                <div class="row">
+                    <div class="col-7 ">
+                        <md-input-container class="d-block">
+                            <input type="text" mdInput>
+                        </md-input-container>
+                    </div>
+                    <div class="col-3 d-flex">
+                        <div class="btn-toolbar">
+                            <button md-button
+                                    class="btn btn-sm btn-secondary float-right"
+                                    (click)="deleteImage(image)"
+                                    type="button">
+                                <i class="icon icon-dustbin"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3" *ngFor="let imageNew of imagesNew">
+                <div class="img-wrap">
+                    <img class="img-fluid img-appartment"
+                         src="{{urlForImage}}{{imageNew.url}}" alt="">
+                </div>
+                <div class="row">
+                    <div class="col-6 ">
+                        <md-input-container class="d-block">
+                            <input type="text" mdInput>
+                        </md-input-container>
+                    </div>
+                    <div class="col-4 d-flex">
+                        <div class="btn-toolbar">
+                            <button md-button class="btn btn-sm btn-secondary float-right"
+                                    (click)="deleteImageNew(imageNew)"
+                                    type="button">
+                                <i class="icon icon-dustbin"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-12">
+            <p class="message" *ngIf="maxImagesUpload">
+                The maximum number of pictures is should be not more than 8
+            </p>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between">
+            <a routerLink="/portal/announcements" class="btn btn-secondary">Close</a>
+
+            <button type="submit" class="btn btn-success" [disabled]="announcementForm.invalid">
+                Save announcement
+            </button>
+        </div>
+    </div>
+</form>
