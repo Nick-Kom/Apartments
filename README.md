@@ -1,1 +1,1 @@
-# Appartments
+# Apartments
